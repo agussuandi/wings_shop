@@ -19,6 +19,10 @@ class CheckoutController extends Controller
     {
         try
         {
+            if (!Auth::check())
+            {
+                return redirect('/login')->with('error', 'Login first before checkout!');
+            }
             $carts = session()->get('cart');
             if (sizeof($carts) < 1)
             {
