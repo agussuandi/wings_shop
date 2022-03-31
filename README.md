@@ -8,3 +8,7 @@ username : agus.suandi
 password : agus
 
 Database -> path/database/dump/wings_shop.sql
+
+Resume -> path/resume
+
+Recoreder -> path/recorder
