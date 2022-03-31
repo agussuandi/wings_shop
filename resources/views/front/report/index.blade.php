@@ -14,6 +14,7 @@
                                 <th>Code</th>
                                 <th>Date</th>
                                 <th>Total</th>
+                                <th>#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -23,9 +24,12 @@
                                     <td>{{ $report->code }}</td>
                                     <td>{{ $report->trans_date }}</td>
                                     <td>{{ $report->total }}</td>
+                                    <td>
+                                        <a href="{{ route('report.show', Crypt::encryptString($report->id)) }}" class="btn btn-primary btn-sm">Detail</a>
+                                    </td>
                                 </tr>
                             @empty
-                                <p colspan="4" class="text-center">Data Kosong</p>
+                                <p colspan="5" class="text-center">Data Kosong</p>
                             @endforelse
                         </tbody>
                     </table>

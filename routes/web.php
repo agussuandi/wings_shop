@@ -44,6 +44,7 @@ Route::prefix('/checkout')->group(function ()
 Route::prefix('/report')->group(function ()
 {
     Route::get('/', [ReportController::class, 'index'])->name('report');
+    Route::get('/{id}', [ReportController::class, 'show'])->name('report.show');
 });
 
 #AUTHENTICATION

@@ -29,4 +29,19 @@ class ReportController extends Controller
             abort(500);
         }
     }
+
+    public function show(Request $request, $id)
+    {
+        try
+        {
+            $report = TrxHPenjualan::find(Crypt::decryptString($id));
+            return view('front.report.show', [
+                'report' => $report
+            ]);    
+        }
+        catch (Exception $e)
+        {
+            abort(500);
+        }
+    }
 }

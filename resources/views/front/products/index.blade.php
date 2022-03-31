@@ -38,7 +38,6 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('products.show', Crypt::encryptString($product->id)) }}" class="btn btn-primary btn-sm">Detail</a>
-
                                     <a href="{{ route('products.destroy', Crypt::encryptString($product->id)) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $product->id }}').submit();" class="btn btn-danger btn-sm">
                                         <span>Delete</span>
                                         <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', Crypt::encryptString($product->id)) }}" method="POST" style="display: none;">

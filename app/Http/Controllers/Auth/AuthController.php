@@ -34,7 +34,7 @@ class AuthController extends Controller
             Auth::attempt($data);
             if (Auth::check())
             {
-                return redirect('login');
+                return redirect('/')->with('success', 'Login success');;
             }
             else
             {

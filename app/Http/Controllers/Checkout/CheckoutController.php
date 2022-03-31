@@ -43,6 +43,8 @@ class CheckoutController extends Controller
                 $trxDPenjualan              = new TrxDPenjualan;
                 $trxDPenjualan->trx_h_id    = $trxHPenjualan->id;
                 $trxDPenjualan->product_id  = $cart['id'];
+                $trxDPenjualan->qty         = $cart['quantity'];
+                $trxDPenjualan->price       = $cart['price'];
                 $trxDPenjualan->sub_total   = (int)$cart['price'] * (int)$cart['quantity'];
                 $trxDPenjualan->created_by  = Auth::user()->id;
                 $trxDPenjualan->created_at  = date('Y-m-d H:i:s');

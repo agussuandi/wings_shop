@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 31/03/2022 12:57:33
+ Date: 31/03/2022 13:34:34
 */
 
 SET NAMES utf8mb4;
@@ -36,7 +36,7 @@ CREATE TABLE `m_products`  (
   `updated_by` int(11) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of m_products
@@ -44,6 +44,7 @@ CREATE TABLE `m_products`  (
 INSERT INTO `m_products` VALUES (4, '10000001', 'Lux Giv (Update)', 10000, 'IDR', 0, '10mm x 10mm', 'PCS', 'storage/products/lux-giv-update.jpg', 1, '2022-03-31 11:08:54', 1, '2022-03-31 11:17:23');
 INSERT INTO `m_products` VALUES (5, '10000002', 'SO Klin', 500000, 'IDR', 10, '120mm x 100mm', 'PCS', 'storage/products/so-klin.jpg', 1, '2022-03-31 11:18:47', NULL, NULL);
 INSERT INTO `m_products` VALUES (6, '10000003', 'Sabun Krim Wings Biru', 5500, 'IDR', 0, '10mm x 10mm', 'PCS', 'storage/products/sabun-krim-wings-biru.jpg', 1, '2022-03-31 11:22:07', NULL, NULL);
+INSERT INTO `m_products` VALUES (8, '10000004', 'Product Test', 999999, 'IDR', 0, '10mx10m', '1', 'storage/products/product-test.png', 1, '2022-03-31 13:10:35', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for trx_d_penjualan
@@ -54,6 +55,8 @@ CREATE TABLE `trx_d_penjualan`  (
   `trx_h_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `sub_total` decimal(10, 0) NOT NULL,
+  `qty` int(6) NOT NULL,
+  `price` decimal(10, 0) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
@@ -61,20 +64,25 @@ CREATE TABLE `trx_d_penjualan`  (
   INDEX `product`(`product_id`) USING BTREE,
   CONSTRAINT `product` FOREIGN KEY (`product_id`) REFERENCES `m_products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `trx_header` FOREIGN KEY (`trx_h_id`) REFERENCES `trx_h_penjualan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of trx_d_penjualan
 -- ----------------------------
-INSERT INTO `trx_d_penjualan` VALUES (1, 7, 4, 10000, 1, '2022-03-31 12:45:13');
-INSERT INTO `trx_d_penjualan` VALUES (2, 7, 5, 500000, 1, '2022-03-31 12:45:13');
-INSERT INTO `trx_d_penjualan` VALUES (3, 7, 6, 5500, 1, '2022-03-31 12:45:13');
-INSERT INTO `trx_d_penjualan` VALUES (4, 9, 4, 10000, 1, '2022-03-31 12:46:21');
-INSERT INTO `trx_d_penjualan` VALUES (5, 9, 5, 1000000, 1, '2022-03-31 12:46:21');
-INSERT INTO `trx_d_penjualan` VALUES (6, 9, 6, 5500, 1, '2022-03-31 12:46:21');
-INSERT INTO `trx_d_penjualan` VALUES (7, 10, 4, 10000, 1, '2022-03-31 12:47:10');
-INSERT INTO `trx_d_penjualan` VALUES (8, 10, 5, 1000000, 1, '2022-03-31 12:47:10');
-INSERT INTO `trx_d_penjualan` VALUES (9, 10, 6, 5500, 1, '2022-03-31 12:47:10');
+INSERT INTO `trx_d_penjualan` VALUES (1, 7, 4, 10000, 0, 0, 1, '2022-03-31 12:45:13');
+INSERT INTO `trx_d_penjualan` VALUES (2, 7, 5, 500000, 0, 0, 1, '2022-03-31 12:45:13');
+INSERT INTO `trx_d_penjualan` VALUES (3, 7, 6, 5500, 0, 0, 1, '2022-03-31 12:45:13');
+INSERT INTO `trx_d_penjualan` VALUES (4, 9, 4, 10000, 0, 0, 1, '2022-03-31 12:46:21');
+INSERT INTO `trx_d_penjualan` VALUES (5, 9, 5, 1000000, 0, 0, 1, '2022-03-31 12:46:21');
+INSERT INTO `trx_d_penjualan` VALUES (6, 9, 6, 5500, 0, 0, 1, '2022-03-31 12:46:21');
+INSERT INTO `trx_d_penjualan` VALUES (7, 10, 4, 10000, 0, 0, 1, '2022-03-31 12:47:10');
+INSERT INTO `trx_d_penjualan` VALUES (8, 10, 5, 1000000, 0, 0, 1, '2022-03-31 12:47:10');
+INSERT INTO `trx_d_penjualan` VALUES (9, 10, 6, 5500, 0, 0, 1, '2022-03-31 12:47:10');
+INSERT INTO `trx_d_penjualan` VALUES (10, 11, 4, 20000, 0, 0, 1, '2022-03-31 13:12:06');
+INSERT INTO `trx_d_penjualan` VALUES (11, 11, 5, 500000, 0, 0, 1, '2022-03-31 13:12:06');
+INSERT INTO `trx_d_penjualan` VALUES (12, 11, 6, 5500, 0, 0, 1, '2022-03-31 13:12:06');
+INSERT INTO `trx_d_penjualan` VALUES (13, 14, 5, 1000000, 2, 500000, 1, '2022-03-31 13:33:27');
+INSERT INTO `trx_d_penjualan` VALUES (14, 14, 6, 5500, 1, 5500, 1, '2022-03-31 13:33:27');
 
 -- ----------------------------
 -- Table structure for trx_h_penjualan
@@ -88,7 +96,7 @@ CREATE TABLE `trx_h_penjualan`  (
   `created_by` int(11) NOT NULL,
   `created_at` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of trx_h_penjualan
@@ -96,6 +104,8 @@ CREATE TABLE `trx_h_penjualan`  (
 INSERT INTO `trx_h_penjualan` VALUES (7, 'TRX00001.22', 1015500, '2022-03-31', 1, '2022-03-31 12:45:13');
 INSERT INTO `trx_h_penjualan` VALUES (9, 'TRX00002.22', 1015500, '2022-03-31', 1, '2022-03-31 12:46:21');
 INSERT INTO `trx_h_penjualan` VALUES (10, 'TRX00003.22', 1015500, '2022-03-31', 1, '2022-03-31 12:47:10');
+INSERT INTO `trx_h_penjualan` VALUES (11, 'TRX00004.22', 525500, '2022-03-31', 1, '2022-03-31 13:12:06');
+INSERT INTO `trx_h_penjualan` VALUES (14, 'TRX00005.22', 1005500, '2022-03-31', 1, '2022-03-31 13:33:27');
 
 -- ----------------------------
 -- Table structure for users
